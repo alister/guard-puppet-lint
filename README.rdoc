@@ -2,6 +2,14 @@
 
 Run puppet-lint under guard to re-run when a manifest changes
 
+* Install `gem guard guard-puppet-lint`
+* `guard init puppet-lint` in the base of your puppet repo/directory
+* finally, you can run `guard`, and start editing your .pp files, it will show the files it's checking, and any errors.
+
+Check out the Guardfile and edit to suit.
+
+This is my first gem, so it's really very simple. Updates are very welcome.
+
 == Contributing to guard-puppet-lint
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
