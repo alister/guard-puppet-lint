@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "guard-puppet-lint"
   gem.homepage = "http://github.com/alister/guard-puppet-lint"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{run puppet-lint under guard}
+  gem.description = %Q{As Puppet manifest files change, run puppet-lint on them}
   gem.email = "abulman@gmail.com"
   gem.authors = ["Alister Bulman"]
   # dependencies defined in Gemfile

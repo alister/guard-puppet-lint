@@ -42,8 +42,13 @@ pkg
 # For vim:
 #*.swp
 
+# for sublime text 2
+guard-puppet-lint.sublime-project
+guard-puppet-lint.sublime-workspace
+
 # For redcar:
 #.redcar
 
 # For rubinius:
 #*.rbc
+

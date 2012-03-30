@@ -1,6 +1,6 @@
 = guard-puppet-lint
 
-Description goes here.
+Run puppet-lint under guard to re-run when a manifest changes
 
 == Contributing to guard-puppet-lint
  
