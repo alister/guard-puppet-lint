@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "guard-puppet-lint"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alister Bulman"]
-  s.date = "2012-03-30"
+  s.date = "2012-04-02"
   s.description = "As Puppet manifest files change, run puppet-lint on them"
   s.email = "abulman@gmail.com"
   s.extra_rdoc_files = [
@@ -19,10 +19,12 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "guard-puppet-lint.gemspec",
     "lib/guard-puppet-lint.rb",
     "lib/guard/puppet-lint.rb",
     "lib/guard/puppet-lint/templates/Guardfile",
