@@ -20,6 +20,7 @@ module Guard
   class Puppetlint < Guard
 
     def initialize(watchers = [], options = {})
+      options = { :syntax_check => true }.merge(options)
       @linter = PuppetLint.new
       super
     end
@@ -48,11 +49,13 @@ module Guard
       res.each do |file|
         file = File.join( options[:watchdir].to_s,file ) if options[:watchdir]
 
-        parser_messages = `puppet parser validate #{file} --color=false`.split("\n")
-        parser_messages.reject! { |s| s =~ /puppet help parser validate/ }
-        parser_messages.map! { |s| s.gsub 'err: Could not parse for environment production:', '' }
+        if options[:syntax_check]
+          parser_messages = `puppet parser validate #{file} --color=false`.split("\n")
+          parser_messages.reject! { |s| s =~ /puppet help parser validate/ }
+          parser_messages.map! { |s| s.gsub 'err: Could not parse for environment production:', '' }
 
-        messages += prepend_filename(parser_messages, file)
+          messages += prepend_filename(parser_messages, file)
+        end
 
         @linter.file = file
         @linter.clear_messages
