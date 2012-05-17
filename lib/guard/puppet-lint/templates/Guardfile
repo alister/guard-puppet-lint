@@ -1,6 +1,6 @@
 # Add files and commands to this file, like the example:
 #   watch(%r{file/path}) { `command(s)` }
 #
-guard 'puppet-lint' do
+guard 'puppet-lint', :show_warnings => false do
   watch(/(.*).pp$/)
 end
