@@ -44,7 +44,13 @@ module Guard
         linter_msg = @linter.messages.reject { |s| !options[:show_warnings] && s =~ /WARNING/ }
         messages += linter_msg.map {|x| "#{file}: #{x}"} if linter_msg
       end
-      Notifier.notify( messages.join("\n"), :title => "Puppet lint", :image => :failed )
+      if messages.empty?
+        messages = ["Files are ok:"] + res
+        image = :success
+      else
+        image = :failed
+      end
+      Notifier.notify( messages.join("\n"), :title => "Puppet lint", :image => image )
     end
   end
 end
