@@ -34,16 +34,31 @@ module Guard
       run_on_change(Watcher.match_files(self, Dir.glob('{,**/}*{,.*}').uniq))
     end
 
+    def prepend_filename(msg, file)
+      if msg
+        msg.map {|x| "#{file}: #{x}"}
+      else
+        []
+      end
+    end
+
     # Print the result of the command(s), if there are results to be printed.
     def run_on_change(res)
       messages = []
       res.each do |file|
         file = File.join( options[:watchdir].to_s,file ) if options[:watchdir]
+
+        parser_messages = `puppet parser validate #{file} --color=false`.split("\n")
+        parser_messages.reject! { |s| s =~ /puppet help parser validate/ }
+        parser_messages.map! { |s| s.gsub 'err: Could not parse for environment production:', '' }
+
+        messages += prepend_filename(parser_messages, file)
+
         @linter.file = file
         @linter.clear_messages
         @linter.run
         linter_msg = @linter.messages.reject { |s| !options[:show_warnings] && s =~ /WARNING/ }
-        messages += linter_msg.map {|x| "#{file}: #{x}"} if linter_msg
+        messages += prepend_filename(linter_msg, file)
       end
       if messages.empty?
         messages = ["Files are ok:"] + res
