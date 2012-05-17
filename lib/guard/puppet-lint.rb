@@ -38,6 +38,7 @@ module Guard
     def run_on_change(res)
       messages = []
       res.each do |file|
+        file = File.join( options[:watchdir].to_s,file ) if options[:watchdir]
         @linter.file = file
         @linter.clear_messages
         @linter.run
