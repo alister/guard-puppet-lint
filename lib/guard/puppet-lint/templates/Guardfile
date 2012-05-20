@@ -1,8 +1,9 @@
 # Add files and commands to this file, like the example:
 #   watch(%r{file/path}) { `command(s)` }
 #
-guard 'puppet-lint' do
-  watch(/(.*).pp$/) {|m| `echo #{m[0]}; \
-	puppet-lint #{m[0]} --no-80chars-check --with-filename
-    puppet parser validate --color true --render-as s #{m[0]} ` }
+guard 'puppet-lint', :watchdir => Guard.options[:watchdir], 
+                     :show_warnings => false, 
+                     :syntax_check => true \
+do
+  watch(/(.*).pp$/)
 end
