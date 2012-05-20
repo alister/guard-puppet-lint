@@ -3,5 +3,6 @@
 #
 guard 'puppet-lint' do
   watch(/(.*).pp$/) {|m| `echo #{m[0]}; \
-	puppet-lint #{m[0]} --no-80chars-check --with-filename` }
+	puppet-lint #{m[0]} --no-80chars-check --with-filename
+    puppet parser validate --color true --render-as s #{m[0]} ` }
 end
